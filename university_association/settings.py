@@ -92,9 +92,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'university_association_db',
-        'USER': 'alihosseini_user',
-        'PASSWORD': 'ujWXla13!9dh',
-        'HOST': '127.0.0.1',
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
         'PORT': '5432',
     }
 }
