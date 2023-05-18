@@ -91,7 +91,7 @@ WSGI_APPLICATION = 'university_association.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'university_association_db',
+        'NAME': os.environ.get('DB_HOST'),
         'USER': os.environ.get('DB_USER'),
         'PASSWORD': os.environ.get('DB_PASSWORD'),
         'HOST': os.environ.get('DB_HOST'),
