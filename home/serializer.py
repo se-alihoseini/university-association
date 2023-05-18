@@ -12,7 +12,7 @@ class HomeArticleSerializer(serializers.ModelSerializer):
 class HomePodcastSerializer(serializers.ModelSerializer):
     class Meta:
         model = Podcast
-        fields = ('title', 'time', 'speaker', 'image')
+        fields = ('title', 'time', 'image')
 
 
 class SerializerSlider(serializers.ModelSerializer):
