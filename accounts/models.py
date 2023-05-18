@@ -11,7 +11,7 @@ class User(AbstractBaseUser):
     email = models.EmailField(unique=True)
     is_qut_student = models.BooleanField(default=False)
     university = models.CharField(max_length=30)
-    phone_number = models.CharField(max_length=12, unique=True, blank=True)
+    phone_number = models.CharField(max_length=12)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
