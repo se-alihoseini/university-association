@@ -16,7 +16,7 @@ class Article(models.Model):
     slug = models.CharField(max_length=50, null=True, blank=True, unique=True)
     short_description = models.TextField()
     content = RichTextField()
-    image = models.ImageField(upload_to='image/article/%y /%m /%d')
+    image = models.ImageField(blank=True, null=True, upload_to='image/article/%y /%m /%d')
     status = models.CharField(max_length=1, choices=Status_Choice, default='d')
     category = models.ForeignKey('Category', on_delete=models.CASCADE, related_name='category_article', blank=True,
                                  null=True)
