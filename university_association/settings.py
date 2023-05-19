@@ -90,25 +90,25 @@ WSGI_APPLICATION = 'university_association.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    # # server
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': os.environ.get('DB_NAME'),
-    #     'USER': os.environ.get('DB_USER'),
-    #     'PASSWORD': os.environ.get('DB_PASSWORD'),
-    #     'HOST': os.environ.get('DB_HOST'),
-    #     'PORT': '5432',
-    # }
-
-    # local
+    # server
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
         'PORT': '5432',
     }
+
+    # # local
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': config('DB_NAME'),
+    #     'USER': config('DB_USER'),
+    #     'PASSWORD': config('DB_PASSWORD'),
+    #     'HOST': config('DB_HOST'),
+    #     'PORT': '5432',
+    # }
 }
 
 
