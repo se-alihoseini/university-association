@@ -21,12 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+# SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['qut-association.iran.liara.run']
+ALLOWED_HOSTS = ['qut-association.iran.liara.run', '127.0.0.1']
 
 
 # Application definition
@@ -89,12 +90,23 @@ WSGI_APPLICATION = 'university_association.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
+    # # server
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': os.environ.get('DB_NAME'),
+    #     'USER': os.environ.get('DB_USER'),
+    #     'PASSWORD': os.environ.get('DB_PASSWORD'),
+    #     'HOST': os.environ.get('DB_HOST'),
+    #     'PORT': '5432',
+    # }
+
+    # local
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST'),
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
         'PORT': '5432',
     }
 }
@@ -180,16 +192,16 @@ SPECTACULAR_SETTINGS = {
 }
 
 
-# # storage
-# AWS_S3_ENDPOINT_URL = os.environ.get('LIARA_ENDPOINT')
-# AWS_STORAGE_BUCKET_NAME = os.environ.get('LIARA_BUCKET_NAME')
-# AWS_ACCESS_KEY_ID = os.environ.get('LIARA_ACCESS_KEY')
-# AWS_SECRET_ACCESS_KEY = os.environ.get('LIARA_SECRET_KEY')
-# AWS_S3_OBJECT_PARAMETERS = {
-#   'CacheControl': 'max-age=86400',
-# }
-# AWS_LOCATION = 'static'
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# storage
+AWS_S3_ENDPOINT_URL = os.environ.get('STORAGE_ENDPOINT')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('STORAGE_BUCKET_NAME')
+AWS_ACCESS_KEY_ID = os.environ.get('STORAGE_ACCESS_KEY')
+AWS_SECRET_ACCESS_KEY = os.environ.get('STORAGE_SECRET_KEY')
+STATICFILES_STORAGE = os.environ.get('BACKEND_FILE_STORAGE')
+AWS_S3_OBJECT_PARAMETERS = {
+  'CacheControl': 'max-age=86400',
+}
+AWS_LOCATION = 'static'
 
 
 CKEDITOR_CONFIGS = {
