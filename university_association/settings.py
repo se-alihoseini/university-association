@@ -191,18 +191,18 @@ SPECTACULAR_SETTINGS = {
 }
 
 
-# storage
-AWS_S3_ENDPOINT_URL = os.getenv('STORAGE_ENDPOINT', 'https://storage.iran.liara.space')
-AWS_STORAGE_BUCKET_NAME = os.getenv('STORAGE_BUCKET_NAME', 'university-association')
-AWS_ACCESS_KEY_ID = os.getenv('STORAGE_ACCESS_KEY', '5qpvoceqcq59uvrd')
-AWS_SECRET_ACCESS_KEY = os.getenv('STORAGE_SECRET_KEY', 'c6575249-a64b-4e98-a726-ef84bcebc27b')
-DEFAULT_FILE_STORAGE = os.getenv('BACKEND_FILE_STORAGE', 'storages.backends.s3boto3.S3Boto3Storage')
-AWS_S3_FILE_OVERWRITE = False
-AWS_S3_OBJECT_PARAMETERS = {
-  'CacheControl': 'max-age=86400',
-}
-AWS_LOCATION = 'static'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# # storage
+# AWS_S3_ENDPOINT_URL = os.getenv('STORAGE_ENDPOINT', 'https://storage.iran.liara.space')
+# AWS_STORAGE_BUCKET_NAME = os.getenv('STORAGE_BUCKET_NAME', 'university-association')
+# AWS_ACCESS_KEY_ID = os.getenv('STORAGE_ACCESS_KEY', '5qpvoceqcq59uvrd')
+# AWS_SECRET_ACCESS_KEY = os.getenv('STORAGE_SECRET_KEY', 'c6575249-a64b-4e98-a726-ef84bcebc27b')
+# DEFAULT_FILE_STORAGE = os.getenv('BACKEND_FILE_STORAGE', 'storages.backends.s3boto3.S3Boto3Storage')
+# AWS_S3_FILE_OVERWRITE = False
+# AWS_S3_OBJECT_PARAMETERS = {
+#   'CacheControl': 'max-age=86400',
+# }
+# AWS_LOCATION = 'static'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
 CKEDITOR_CONFIGS = {
