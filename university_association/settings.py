@@ -192,11 +192,11 @@ SPECTACULAR_SETTINGS = {
 
 
 # storage
-AWS_S3_ENDPOINT_URL = os.environ.get('STORAGE_ENDPOINT', 'https://storage.storage.storage.space')
-AWS_STORAGE_BUCKET_NAME = os.environ.get('STORAGE_BUCKET_NAME', 'STORAGE_BUCKET_NAME')
-AWS_ACCESS_KEY_ID = os.environ.get('STORAGE_ACCESS_KEY', 'STORAGE_ACCESS_KEY')
-AWS_SECRET_ACCESS_KEY = os.environ.get('STORAGE_SECRET_KEY', 'STORAGE_SECRET_KEY')
-DEFAULT_FILE_STORAGE = os.environ.get('BACKEND_FILE_STORAGE', 'BACKEND_FILE_STORAGE')
+AWS_S3_ENDPOINT_URL = os.environ.get('STORAGE_ENDPOINT', 'https://storage.iran.liara.space')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('STORAGE_BUCKET_NAME', 'default-value')
+AWS_ACCESS_KEY_ID = os.environ.get('STORAGE_ACCESS_KEY', 'default-value')
+AWS_SECRET_ACCESS_KEY = os.environ.get('STORAGE_SECRET_KEY', 'default-value')
+DEFAULT_FILE_STORAGE = os.environ.get('BACKEND_FILE_STORAGE', 'default-value')
 AWS_S3_FILE_OVERWRITE = False
 AWS_S3_OBJECT_PARAMETERS = {
   'CacheControl': 'max-age=86400',
