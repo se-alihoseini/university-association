@@ -99,7 +99,7 @@ DATABASES = {
         'HOST': os.getenv('DB_HOST'),
         'PORT': '5432',
     }
-    # local
+    # # local
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql',
     #     'NAME': config('DB_NAME'),
