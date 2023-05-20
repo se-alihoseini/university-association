@@ -1,12 +1,21 @@
 from rest_framework import serializers
 from post.models import Article, Podcast, Category
+from accounts.models import User
 from .models import Slider
 
 
+class UserArticleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('full_name', 'slug', 'email')
+
+
 class HomeArticleSerializer(serializers.ModelSerializer):
+    article_user = UserArticleSerializer(source='author')
+
     class Meta:
         model = Article
-        fields = ('title', 'author', 'slug', 'image')
+        fields = ('title', 'slug', 'image', 'article_user')
 
 
 class HomePodcastSerializer(serializers.ModelSerializer):

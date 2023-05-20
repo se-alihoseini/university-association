@@ -6,4 +6,4 @@ from home.serializer import HomeArticleSerializer
 class ArticleHomeView(ListAPIView):
     authentication_classes = []
     serializer_class = HomeArticleSerializer
-    queryset = Article.objects.filter(status='p')[:4]
+    queryset = Article.objects.filter(status='p')[:6]

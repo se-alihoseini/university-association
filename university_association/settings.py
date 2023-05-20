@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY', config('SECRET_KEY'))
 # SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -99,7 +99,7 @@ DATABASES = {
         'HOST': os.getenv('DB_HOST'),
         'PORT': '5432',
     }
-    # # local
+    # local
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql',
     #     'NAME': config('DB_NAME'),
@@ -192,11 +192,11 @@ SPECTACULAR_SETTINGS = {
 
 
 # storage
-AWS_S3_ENDPOINT_URL = os.getenv('STORAGE_ENDPOINT', 'https://storage.storage.storage.space')
-AWS_STORAGE_BUCKET_NAME = os.getenv('STORAGE_BUCKET_NAME', 'default-value')
-AWS_ACCESS_KEY_ID = os.getenv('STORAGE_ACCESS_KEY', 'default-value')
-AWS_SECRET_ACCESS_KEY = os.getenv('STORAGE_SECRET_KEY', 'default-value')
-DEFAULT_FILE_STORAGE = os.getenv('BACKEND_FILE_STORAGE', 'default-value')
+AWS_S3_ENDPOINT_URL = os.getenv('STORAGE_ENDPOINT', 'https://storage.iran.liara.space')
+AWS_STORAGE_BUCKET_NAME = os.getenv('STORAGE_BUCKET_NAME', 'university-association')
+AWS_ACCESS_KEY_ID = os.getenv('STORAGE_ACCESS_KEY', '5qpvoceqcq59uvrd')
+AWS_SECRET_ACCESS_KEY = os.getenv('STORAGE_SECRET_KEY', 'c6575249-a64b-4e98-a726-ef84bcebc27b')
+DEFAULT_FILE_STORAGE = os.getenv('BACKEND_FILE_STORAGE', 'storages.backends.s3boto3.S3Boto3Storage')
 AWS_S3_FILE_OVERWRITE = False
 AWS_S3_OBJECT_PARAMETERS = {
   'CacheControl': 'max-age=86400',
