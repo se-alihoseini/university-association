@@ -15,7 +15,7 @@ class HomeArticleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Article
-        fields = ('title', 'slug', 'image', 'article_user')
+        fields = ('title', 'slug', 'image', 'article_user', 'status')
 
 
 class HomePodcastSerializer(serializers.ModelSerializer):

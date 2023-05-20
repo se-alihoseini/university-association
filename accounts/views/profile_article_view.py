@@ -9,6 +9,6 @@ class ArticleProfileView(APIView):
 
     def get(self, request):
         user = request.user
-        queryset = Article.objects.filter(status='p')[:6]
+        queryset = Article.objects.filter(author=user)
         srz_data = HomeArticleSerializer(data=queryset, many=True)
         return Response(data=srz_data.data, status=status.HTTP_200_OK)

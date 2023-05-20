@@ -6,7 +6,7 @@ from .manager import UserManager
 class User(AbstractBaseUser):
 
     student_number = models.CharField(max_length=20, unique=True)
-    image = models.ImageField(upload_to='image/user/%full_name', null=True, blank=True)
+    image = models.ImageField(upload_to='image/user/', null=True, blank=True)
     full_name = models.CharField(max_length=50)
     email = models.EmailField(unique=True)
     is_qut_student = models.BooleanField(default=False)
