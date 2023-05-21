@@ -72,7 +72,7 @@ class Event(models.Model):
     slug = models.CharField(max_length=50)
     image = models.ImageField(upload_to='image/event/%y /%m /%d')
     content = RichTextField()
-    users = models.ManyToManyField(User, related_name='user_event')
+    users = models.ManyToManyField(User, related_name='user_event', blank=True, null=True)
     date = models.DateField()
     expire_time = models.DateField()
     is_active = models.BooleanField(default=False)
