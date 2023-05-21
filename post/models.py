@@ -21,6 +21,7 @@ class Article(models.Model):
     category = models.ForeignKey('Category', on_delete=models.CASCADE, related_name='category_article', blank=True,
                                  null=True)
     comment = models.ManyToManyField('Comment', related_name='comment_article', blank=True)
+    is_top = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -103,10 +104,10 @@ class Category(models.Model):
     en_name = models.CharField(max_length=20)
     slug = models.CharField(max_length=20)
     description = RichTextField(blank=True, null=True)
-    icon = models.ImageField(upload_to='image/category/%y /%m /%d')
-    is_sub = models.BooleanField()
+    # icon = models.ImageField(upload_to='image/category/%y /%m /%d')
+    # is_sub = models.BooleanField()
     in_menu = models.BooleanField(default=False)
-    parent = models.ManyToManyField('self', blank=True)
+    # parent = models.ManyToManyField('self', blank=True)
 
     def __str__(self):
         return self.name
