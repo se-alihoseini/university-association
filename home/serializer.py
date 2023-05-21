@@ -18,6 +18,12 @@ class HomeArticleSerializer(serializers.ModelSerializer):
         fields = ('title', 'slug', 'image', 'article_user', 'status')
 
 
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ('name', 'slug')
+
+
 class HomePodcastSerializer(serializers.ModelSerializer):
     class Meta:
         model = Podcast

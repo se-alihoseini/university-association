@@ -29,7 +29,7 @@ class RetrievePodCastSerializer(serializers.ModelSerializer):
 class ListEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ('title', 'slug', 'image', 'date', 'place')
+        fields = ('title', 'slug', 'image', 'is_active')
 
 
 class CommentSerializer(serializers.ModelSerializer):
