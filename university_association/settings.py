@@ -192,18 +192,18 @@ SPECTACULAR_SETTINGS = {
 }
 
 
-# # storage
-# AWS_S3_ENDPOINT_URL = 'https://storage.iran.liara.space'
-# AWS_STORAGE_BUCKET_NAME = 'university-association'
-# AWS_ACCESS_KEY_ID = '5qpvoceqcq59uvrd'
-# AWS_SECRET_ACCESS_KEY = 'c6575249-a64b-4e98-a726-ef84bcebc27b'
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# AWS_S3_FILE_OVERWRITE = False
-# AWS_S3_OBJECT_PARAMETERS = {
-#   'CacheControl': 'max-age=86400',
-# }
-# AWS_LOCATION = 'static'
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# storage
+AWS_S3_ENDPOINT_URL = 'https://storage.iran.liara.space'
+AWS_STORAGE_BUCKET_NAME = 'university-association'
+AWS_ACCESS_KEY_ID = '5qpvoceqcq59uvrd'
+AWS_SECRET_ACCESS_KEY = 'c6575249-a64b-4e98-a726-ef84bcebc27b'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_S3_FILE_OVERWRITE = False
+AWS_S3_OBJECT_PARAMETERS = {
+  'CacheControl': 'max-age=86400',
+}
+AWS_LOCATION = 'static'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
 CKEDITOR_CONFIGS = {
