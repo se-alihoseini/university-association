@@ -7,7 +7,7 @@ from .models import Slider
 class UserArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('full_name', 'slug', 'email')
+        fields = ('full_name', 'email')
 
 
 class HomeArticleSerializer(serializers.ModelSerializer):
