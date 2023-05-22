@@ -49,11 +49,11 @@ class Podcast(models.Model):
     sound = models.FileField(upload_to='sound/podcast/%y /%m /%d')
     description = RichTextField()
     image = models.ImageField(upload_to='image/podcast/%y /%m /%d')
-    speaker = models.CharField(max_length=20, blank=True, null=True)
-    data_collector = models.CharField(max_length=20, blank=True, null=True)
-    text_editor = models.CharField(max_length=20, blank=True, null=True)
-    sound_editor = models.CharField(max_length=20, blank=True, null=True)
-    graphic_designer = models.CharField(max_length=20, blank=True, null=True)
+    speaker = models.CharField(max_length=30, blank=True, null=True)
+    data_collector = models.CharField(max_length=50, blank=True, null=True)
+    text_editor = models.CharField(max_length=30, blank=True, null=True)
+    sound_editor = models.CharField(max_length=30, blank=True, null=True)
+    graphic_designer = models.CharField(max_length=30, blank=True, null=True)
     status = models.CharField(max_length=1, choices=Status_Choice, default='d')
     comment = models.ManyToManyField('Comment', related_name='comment_podcast', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -124,11 +124,11 @@ class Comment(models.Model):
     )
     name = models.CharField(max_length=20, null=True)
     # article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='article_comment')
-    body = models.TextField(max_length=400)
+    content = models.TextField(max_length=400)
     post_type = models.CharField(max_length=1, choices=Type, null=True)
     post_slug = models.SlugField(null=True)
     status = models.CharField(max_length=1, choices=Status_Choice, default='w')
     created_at = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.name} - {self.body[:15]}'
+        return f'{self.name} - {self.content[:15]}'
