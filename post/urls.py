@@ -3,7 +3,7 @@ from rest_framework import routers
 from .views import article_crud_view, podcast_list_view, podcast_retrieve_view, attend_to_event, event_list_view, \
     canceling_event_view, add_comment_view, list_comment_view, category_view, category_articles
 
-app_name = 'post_app'
+app_name = 'post'
 urlpatterns = [
     path('podcast/archive/', podcast_list_view.PodcastListView.as_view(), name='podcast_archive'),
     path('podcast/<int:id>/<slug:slug>/', podcast_retrieve_view.PodcastRetrieveView.as_view(), name='podcast_retrieve'),

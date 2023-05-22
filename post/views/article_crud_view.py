@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from post.models import Article
-from post.serializer import ListArticleSerializer, RetrieveArticleSerializer
+from post.serializer import ArchiveArticleSerializer, RetrieveArticleSerializer
 from mixin import MultipleFieldLookupMixin
 
 
@@ -16,12 +16,12 @@ class ArticleViewSet(MultipleFieldLookupMixin, ViewSet):
 
     def list(self, request):
         queryset = self.queryset.filter(status='p')
-        srz_data = ListArticleSerializer(instance=queryset, many=True)
+        srz_data = ArchiveArticleSerializer(instance=queryset, many=True)
         return Response(srz_data.data, status=status.HTTP_200_OK)
 
     def create(self, request):
         user = request.user
-        srz_data = ListArticleSerializer(data=request.data)
+        srz_data = ArchiveArticleSerializer(data=request.data)
         if srz_data.is_valid():
             srz_data.validated_data['author'] = user
             srz_data.create(srz_data.validated_data)
@@ -35,7 +35,7 @@ class ArticleViewSet(MultipleFieldLookupMixin, ViewSet):
 
     def partial_update(self, request, slug=None):
         queryset = get_object_or_404(self.queryset, slug=slug)
-        srz_data = ListArticleSerializer(instance=queryset, data=request.POST, partial=True)
+        srz_data = ArchiveArticleSerializer(instance=queryset, data=request.POST, partial=True)
         if srz_data.is_valid():
             srz_data.save()
             return Response(srz_data.data, status=status.HTTP_200_OK)
