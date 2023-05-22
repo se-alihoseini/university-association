@@ -8,7 +8,7 @@ from post.serializer import ArchiveArticleSerializer
 class ArticleProfileView(APIView):
 
     def get(self, request):
-        user = request.user
+        user = request.user.id
         queryset = Article.objects.filter(author=user)
         srz_data = ArchiveArticleSerializer(data=queryset, many=True)
         return Response(data=srz_data.data, status=status.HTTP_200_OK)
