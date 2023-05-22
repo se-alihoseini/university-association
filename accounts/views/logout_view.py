@@ -8,7 +8,7 @@ from django.contrib.auth import logout
 
 class LogoutView(APIView):
 
-    # permission_classes = [IsAuthenticated, ]
+    permission_classes = [IsAuthenticated, ]
 
     def get(self, request):
         logout(request)
