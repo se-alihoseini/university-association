@@ -39,4 +39,4 @@ class SerializerSlider(serializers.ModelSerializer):
 class SerializerCategory(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ('name', 'icon', 'slug')
+        fields = ('name', 'slug')
