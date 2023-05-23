@@ -99,7 +99,7 @@ DATABASES = {
         'HOST': os.getenv('DB_HOST'),
         'PORT': '5432',
     }
-    # # local
+    # local
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql',
     #     'NAME': config('DB_NAME'),
@@ -178,8 +178,8 @@ REST_FRAMEWORK = {
 
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=2),
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=30),
 }
 
 
