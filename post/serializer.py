@@ -27,6 +27,12 @@ class ArchiveArticleSerializer(serializers.ModelSerializer):
         fields = ('title', 'slug', 'image', 'article_user', 'status', 'category')
 
 
+class CreateArticleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Article
+        fields = ('title', 'en_title', 'content', 'image', 'category')
+
+
 class RetrieveArticleSerializer(serializers.ModelSerializer):
     comment_article = CommentSerializer(source='comment', many=True)
     category = serializers.StringRelatedField(read_only=True)
@@ -41,7 +47,7 @@ class RetrieveArticleSerializer(serializers.ModelSerializer):
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ('name', 'slug')
+        fields = ('name', 'id', 'slug')
 
 
 # PodCastSerializer

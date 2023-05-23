@@ -13,7 +13,7 @@ class Article(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author_article')
     title = models.CharField(max_length=50)
     en_title = models.CharField(max_length=50, unique=True)
-    slug = models.CharField(max_length=50, null=True, blank=True, unique=True)
+    slug = models.CharField(max_length=50, null=True, blank=True)
     short_description = models.TextField()
     content = RichTextField()
     image = models.ImageField(blank=True, null=True, upload_to='image/article/%y /%m /%d')
@@ -43,7 +43,7 @@ class Podcast(models.Model):
         ('t', 'trash'),
     )
     title = models.CharField(max_length=50)
-    en_title = models.CharField(max_length=50)
+    en_title = models.CharField(max_length=50, unique=True)
     slug = models.CharField(max_length=50, null=True, blank=True)
     time = models.TimeField()
     sound = models.FileField(upload_to='sound/podcast/%y /%m /%d')
@@ -69,7 +69,7 @@ class Podcast(models.Model):
 class Event(models.Model):
     title = models.CharField(max_length=50)
     en_title = models.CharField(max_length=50, unique=True)
-    slug = models.CharField(max_length=50)
+    slug = models.CharField(max_length=50, blank=True, null=True)
     image = models.ImageField(upload_to='image/event/%y /%m /%d')
     content = RichTextField()
     users = models.ManyToManyField(User, related_name='user_event', blank=True)
@@ -100,9 +100,9 @@ class Event(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=20)
-    en_name = models.CharField(max_length=20)
-    slug = models.CharField(max_length=20)
+    name = models.CharField(max_length=20, unique=True)
+    en_name = models.CharField(max_length=20, unique=True)
+    slug = models.CharField(max_length=20, blank=True, null=True)
     description = RichTextField(blank=True, null=True)
     # icon = models.ImageField(upload_to='image/category/%y /%m /%d')
     # is_sub = models.BooleanField()
@@ -111,6 +111,10 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.en_name)
+        super(Category, self).save(*args, **kwargs)
 
 
 class Comment(models.Model):

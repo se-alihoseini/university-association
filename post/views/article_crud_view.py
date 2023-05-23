@@ -4,8 +4,9 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from post.models import Article
-from post.serializer import ArchiveArticleSerializer, RetrieveArticleSerializer
+from rest_framework.parsers import MultiPartParser
+from post.models import Article, Category
+from post.serializer import ArchiveArticleSerializer, RetrieveArticleSerializer, CreateArticleSerializer
 from mixin import MultipleFieldLookupMixin
 
 
@@ -21,9 +22,11 @@ class ArticleViewSet(MultipleFieldLookupMixin, ViewSet):
 
     def create(self, request):
         user = request.user
-        srz_data = ArchiveArticleSerializer(data=request.data)
+        srz_data = CreateArticleSerializer(data=request.data)
         if srz_data.is_valid():
             srz_data.validated_data['author'] = user
+            # slug_category = srz_data.validated_data['category']
+            # category = get_object_or_404(Category, slug=slug_category)
             srz_data.create(srz_data.validated_data)
             return Response(srz_data.data, status=status.HTTP_201_CREATED)
         return Response(srz_data.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -18,7 +18,7 @@ class AddCommentView(APIView):
                 comment = srz_data.create(srz_data.validated_data)
                 article = get_object_or_404(Article, slug=post_slug)
                 article.comment.add(comment)
-                return Response(data='ok dawsh article', status=status.HTTP_200_OK)
+                return Response(data='comment article', status=status.HTTP_200_OK)
 
             elif post_type == 'podcast':
                 srz_data.validated_data['post_type'] = 'p'
@@ -26,7 +26,7 @@ class AddCommentView(APIView):
                 comment = srz_data.create(srz_data.validated_data)
                 podcast = get_object_or_404(Podcast, slug=post_slug)
                 podcast.comment.add(comment)
-                return Response(data='ok dawsh podcast', status=status.HTTP_200_OK)
+                return Response(data='comment podcast', status=status.HTTP_200_OK)
 
             else:
                 return Response(status=status.HTTP_400_BAD_REQUEST)
