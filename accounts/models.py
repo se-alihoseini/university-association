@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 from .manager import UserManager
+from datetime import timedelta
+import random
+from django.contrib.auth.hashers import make_password
+from django.utils import timezone
 
 
 class User(AbstractBaseUser):

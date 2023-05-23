@@ -17,14 +17,20 @@ class ForgotPasswordView(APIView):
     serializer_class = ForgotPasswordSerializer
 
     def post(self, request):
-        srz_email = ForgotPasswordSerializer(data=request.data)
-        if srz_email.is_valid():
-            email = srz_email.validated_data['email']
-            random_code = random.randint(1000, 9999)
-            expire_time = timezone.now() + timedelta(minutes=5)
+        user = request.user
+        random_code = random.randint(1000, 9999)
+        expire_time = timezone.now() + timedelta(minutes=5)
+        if request.user.is_authenticated:
+            email = user.email
             OtpCode.objects.create(email=email, code=random_code, expire_time=expire_time)
             return Response({"success": "OTP code sent successfully"}, status=status.HTTP_200_OK)
-        return Response(srz_email.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            srz_email = ForgotPasswordSerializer(data=request.data)
+            if srz_email.is_valid():
+                email = srz_email.validated_data['email']
+                OtpCode.objects.create(email=email, code=random_code, expire_time=expire_time)
+                return Response({"success": "OTP code sent successfully"}, status=status.HTTP_200_OK)
+            return Response(srz_email.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ChangePasswordView(APIView):
@@ -35,13 +41,20 @@ class ChangePasswordView(APIView):
         if srz_data.is_valid():
             vd = srz_data.validated_data
             now = timezone.now()
-            code = OtpCode.objects.filter(email=vd['email'], expire_time__gt=now).order_by('-created_at').first()
+            if request.user.is_authenticated:
+                email = request.user.email
+            else:
+                email = vd['email']
+            code = OtpCode.objects.filter(email=email, expire_time__gt=now).order_by('-created_at').first()
             if code:
                 if code.code == vd['code']:
-                    user = get_object_or_404(User, email=vd['email'])
+                    if request.user.is_authenticated:
+                        user = request.user
+                    else:
+                        user = get_object_or_404(User, email=email)
                     user.password = make_password(vd['new_password'])
                     user.save()
-                    OtpCode.objects.filter(email=vd['email']).delete()
+                    OtpCode.objects.filter(email=email).delete()
                     return Response(data='Your password has been changed correctly', status=status.HTTP_200_OK)
                 return Response(data='code is not correct', status=status.HTTP_400_BAD_REQUEST)
             else:

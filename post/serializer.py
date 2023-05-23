@@ -7,7 +7,7 @@ from accounts.models import User
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        fields = ('name', 'content')
+        fields = ('name', 'content', 'created_at')
 
 
 class UserArticleSerializer(serializers.ModelSerializer):
@@ -20,14 +20,16 @@ class UserArticleSerializer(serializers.ModelSerializer):
 
 class ArchiveArticleSerializer(serializers.ModelSerializer):
     article_user = UserArticleSerializer(source='author')
+    category = serializers.StringRelatedField(read_only=True)
 
     class Meta:
         model = Article
-        fields = ('title', 'slug', 'image', 'article_user', 'status')
+        fields = ('title', 'slug', 'image', 'article_user', 'status', 'category')
 
 
 class RetrieveArticleSerializer(serializers.ModelSerializer):
     comment_article = CommentSerializer(source='comment', many=True)
+    category = serializers.StringRelatedField(read_only=True)
 
     class Meta:
         model = Article

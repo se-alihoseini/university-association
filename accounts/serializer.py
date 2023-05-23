@@ -38,13 +38,11 @@ class ForgotPasswordSerializer(serializers.Serializer):
     email = serializers.EmailField()
 
 
-class ChangePasswordSerializer(ModelSerializer):
+class ChangePasswordSerializer(serializers.Serializer):
     new_password = serializers.CharField(write_only=True)
     confirm_new_password = serializers.CharField(write_only=True)
-
-    class Meta:
-        model = OtpCode
-        fields = ('email', 'code', 'new_password', 'confirm_new_password')
+    code = serializers.IntegerField()
+    email = serializers.EmailField(required=False)
 
     def validate(self, data):
         if data['new_password'] != data['confirm_new_password']:

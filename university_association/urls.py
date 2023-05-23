@@ -24,7 +24,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('post/', include('post.urls')),
     path('account/', include('accounts.urls')),
-    path('', include('home.urls')),
+    path('home/', include('home.urls')),
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
