@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.admin import StackedInline
-from .models import Course, CourseVideo, Teacher
+from course.models import Course, CourseVideo, Teacher
 
 
 class CourseVideoAdmin(StackedInline):
@@ -17,4 +17,11 @@ class CourserAdmin(admin.ModelAdmin):
 
 admin.site.register(Course, CourserAdmin)
 
-admin.site.register(Teacher)
+
+class TeacherAdmin(admin.ModelAdmin):
+    list_display = ('name', 'en_name', 'img_preview')
+    prepopulated_fields = {'slug': ('en_name',)}
+    readonly_fields = ('img_preview',)
+
+
+admin.site.register(Teacher, TeacherAdmin)
