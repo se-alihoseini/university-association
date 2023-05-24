@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Article, Category, Podcast, Event, Comment
+from .models import Article, Category, Podcast, Event, Comment, Image
 
 
 @admin.action(description="published selected items")
@@ -81,3 +81,4 @@ class CommentAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Comment, CommentAdmin)
+admin.site.register(Image)

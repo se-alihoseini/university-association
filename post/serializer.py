@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Article, Podcast, Event, Comment, Category
+from .models import Article, Podcast, Event, Comment, Category, Image
 from accounts.models import User
 
 
@@ -75,3 +75,8 @@ class ListEventSerializer(serializers.ModelSerializer):
         fields = ('title', 'slug', 'image', 'is_active')
 
 
+class ImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Image
+        fields = ('image',)
+        

@@ -136,3 +136,7 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'{self.name} - {self.content[:15]}'
+
+
+class Image(models.Model):
+    image = models.ImageField(upload_to='image/user_upload/%y /%m /%d')
