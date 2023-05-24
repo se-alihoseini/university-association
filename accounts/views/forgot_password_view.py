@@ -22,12 +22,14 @@ class ForgotPasswordView(APIView):
         expire_time = timezone.now() + timedelta(minutes=5)
         if request.user.is_authenticated:
             email = user.email
+            OtpCode.objects.filter(email=email).delete()
             OtpCode.objects.create(email=email, code=random_code, expire_time=expire_time)
             return Response({"success": "OTP code sent successfully"}, status=status.HTTP_200_OK)
         else:
             srz_email = ForgotPasswordSerializer(data=request.data)
             if srz_email.is_valid():
                 email = srz_email.validated_data['email']
+                OtpCode.objects.filter(email=email).delete()
                 OtpCode.objects.create(email=email, code=random_code, expire_time=expire_time)
                 return Response({"success": "OTP code sent successfully"}, status=status.HTTP_200_OK)
             return Response(srz_email.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -45,7 +47,7 @@ class ChangePasswordView(APIView):
                 email = request.user.email
             else:
                 email = vd['email']
-            code = OtpCode.objects.filter(email=email, expire_time__gt=now).order_by('-created_at').first()
+            code = OtpCode.objects.filter(email=email, expire_time__gt=now)
             if code:
                 if code.code == vd['code']:
                     if request.user.is_authenticated:

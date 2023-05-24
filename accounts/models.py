@@ -38,7 +38,7 @@ class User(AbstractBaseUser):
 
 
 class OtpCode(models.Model):
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     code = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     expire_time = models.DateTimeField(null=True, blank=True)

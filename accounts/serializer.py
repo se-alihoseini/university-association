@@ -1,8 +1,5 @@
 from rest_framework import serializers
-from rest_framework.response import Response
 from rest_framework.serializers import ModelSerializer
-from rest_framework.serializers import Serializer
-from rest_framework import status
 from .models import User, OtpCode
 
 from django.contrib.auth.hashers import make_password
