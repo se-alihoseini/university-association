@@ -134,8 +134,8 @@ class Comment(models.Model):
     status = models.CharField(max_length=1, choices=Status_Choice, default='w')
     created_at = models.DateField(auto_now_add=True)
 
-    def __str__(self):
-        return f'{self.name} - {self.content[:15]}'
+    # def __str__(self):
+    #     return f'{self.name} - {self.content[:15]}'
 
 
 class Image(models.Model):
