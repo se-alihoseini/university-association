@@ -10,7 +10,7 @@ class CourseVideo(models.Model):
     slug = models.CharField(max_length=30)
     description = RichTextField()
     course = models.ForeignKey('Course', on_delete=models.CASCADE, related_name='course_video')
-    video_file = models.FileField()
+    video_file = models.FileField(upload_to='course/video/%y /%m /%d')
     time = models.TimeField()
 
     def __str__(self):
@@ -30,7 +30,7 @@ class Course(models.Model):
     date = models.DateField()
     full_time = models.TimeField()
     created_at = models.TimeField()
-    updated_at = models.TimeField()
+    updated_at = models.TimeField('course/image/%y /%m /%d')
 
     def __str__(self):
         return self.title

@@ -45,3 +45,9 @@ class ChangePasswordSerializer(serializers.Serializer):
         if data['new_password'] != data['confirm_new_password']:
             raise serializers.ValidationError('password doesnt match')
         return data
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('student_number', 'image', 'full_name', 'email', 'university', 'phone_number')
