@@ -1,13 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from .manager import UserManager
-from datetime import timedelta
-import random
-from django.contrib.auth.hashers import make_password
-from django.utils import timezone
 
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
 
     student_number = models.CharField(max_length=20, unique=True)
     image = models.ImageField(upload_to='image/user/', null=True, blank=True)
@@ -26,11 +22,6 @@ class User(AbstractBaseUser):
     def __str__(self):
         return f"{self.full_name} - {self.student_number} - {self.university}"
 
-    def has_perm(self, perm, obj=None):
-        return True
-
-    def has_module_perms(self, app_label):
-        return True
 
     @property
     def is_staff(self):
