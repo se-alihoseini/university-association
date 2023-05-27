@@ -38,7 +38,7 @@ class ForgotPasswordSerializer(serializers.Serializer):
 class ChangePasswordSerializer(serializers.Serializer):
     new_password = serializers.CharField(write_only=True)
     confirm_new_password = serializers.CharField(write_only=True)
-    code = serializers.IntegerField()
+    code = serializers.CharField(max_length=8)
     email = serializers.EmailField(required=False)
 
     def validate(self, data):

@@ -2,6 +2,7 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 import random
+import string
 from django.utils import timezone
 from datetime import timedelta
 from django.shortcuts import get_object_or_404
@@ -10,12 +11,20 @@ from accounts.models import User, OtpCode
 from django.contrib.auth.hashers import make_password
 
 
+def get_random_string(length):
+    # choose from all lowercase letter
+    characters = string.ascii_letters + string.digits + string.punctuation
+    # letters = string.printable
+    result_str = ''.join(random.choice(characters) for i in range(length))
+    return result_str
+
+
 class ForgotPasswordView(APIView):
     serializer_class = ForgotPasswordSerializer
 
     def post(self, request):
         user = request.user
-        random_code = random.randint(1000, 9999)
+        random_code = get_random_string(8)
         expire_time = timezone.now() + timedelta(minutes=5)
         if request.user.is_authenticated:
             email = user.email
@@ -44,9 +53,9 @@ class ChangePasswordView(APIView):
                 email = request.user.email
             else:
                 email = vd['email']
-            code = OtpCode.objects.filter(email=email, expire_time__gt=now)
-            if code:
-                if code.code == vd['code']:
+            otp_code = OtpCode.objects.get(email=email, expire_time__gt=now)
+            if otp_code:
+                if otp_code.code == vd['code']:
                     if request.user.is_authenticated:
                         user = request.user
                     else:

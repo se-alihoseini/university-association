@@ -30,7 +30,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class OtpCode(models.Model):
     email = models.EmailField(unique=True)
-    code = models.IntegerField()
+    code = models.CharField(max_length=8)
     created_at = models.DateTimeField(auto_now_add=True)
     expire_time = models.DateTimeField(null=True, blank=True)
 
