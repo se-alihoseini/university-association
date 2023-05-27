@@ -50,4 +50,10 @@ class ChangePasswordSerializer(serializers.Serializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
+        fields = ('student_number', 'full_name', 'image')
+
+
+class UserProfile(serializers.ModelSerializer):
+    class Meta:
+        model = User
         fields = ('student_number', 'image', 'full_name', 'email', 'university', 'phone_number')

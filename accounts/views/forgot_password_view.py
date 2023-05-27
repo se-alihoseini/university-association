@@ -1,13 +1,10 @@
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-
 import random
-
 from django.utils import timezone
 from datetime import timedelta
 from django.shortcuts import get_object_or_404
-from django.core.exceptions import ObjectDoesNotExist
 from accounts.serializer import ForgotPasswordSerializer, ChangePasswordSerializer
 from accounts.models import User, OtpCode
 from django.contrib.auth.hashers import make_password
