@@ -4,6 +4,6 @@ from course.serializer import TeacherSerializer
 
 
 class TeacherListView(ListAPIView):
-    serializer_class = TeacherSerializer
     authentication_classes = []
+    serializer_class = TeacherSerializer
     queryset = Teacher.objects.all()
