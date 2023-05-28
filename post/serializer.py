@@ -53,10 +53,12 @@ class CategorySerializer(serializers.ModelSerializer):
 # PodCastSerializer
 
 class ArchivePodCastSerializer(serializers.ModelSerializer):
+    comment_podcast = CommentSerializer(source='comment', many=True)
+
     class Meta:
         model = Podcast
         fields = ('title', 'slug', 'sound', 'description', 'image', 'speaker', 'data_collector', 'text_editor',
-                  'sound_editor', 'graphic_designer')
+                  'sound_editor', 'graphic_designer', 'comment_podcast', 'id')
 
 
 class RetrievePodCastSerializer(serializers.ModelSerializer):
