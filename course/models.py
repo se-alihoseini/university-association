@@ -29,8 +29,8 @@ class Course(models.Model):
     teacher = models.ForeignKey('Teacher', on_delete=models.CASCADE, related_name='teacher_course')
     date = models.DateField()
     full_time = models.TimeField()
-    created_at = models.TimeField()
-    updated_at = models.TimeField('course/image/%y /%m /%d')
+    created_at = models.TimeField(auto_now_add=True)
+    updated_at = models.TimeField(auto_now=True)
 
     def __str__(self):
         return self.title
