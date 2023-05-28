@@ -22,6 +22,7 @@ class Article(models.Model):
                                  null=True)
     comment = models.ManyToManyField('Comment', related_name='comment_article', blank=True)
     is_top = models.BooleanField(default=False)
+    count = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

@@ -1,11 +1,10 @@
 from django.shortcuts import get_object_or_404
-
+from django.db.models import F
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from rest_framework.parsers import MultiPartParser
-from post.models import Article, Category
+from post.models import Article
 from post.serializer import ArchiveArticleSerializer, RetrieveArticleSerializer, CreateArticleSerializer
 from mixin import MultipleFieldLookupMixin
 
@@ -34,6 +33,8 @@ class ArticleViewSet(MultipleFieldLookupMixin, ViewSet):
     def retrieve(self, request, slug=None):
         queryset = get_object_or_404(self.queryset, slug=slug, status='p')
         srz_data = RetrieveArticleSerializer(instance=queryset)
+        queryset.count += 1
+        queryset.save()
         return Response(srz_data.data, status=status.HTTP_200_OK)
 
     def partial_update(self, request, slug=None):

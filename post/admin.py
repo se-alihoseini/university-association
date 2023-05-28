@@ -23,7 +23,7 @@ def make_waiting(modeladmin, request, queryset):
 
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('title', 'en_title', 'author', 'status', 'created_at', 'updated_at')
+    list_display = ('title', 'en_title', 'author', 'status', 'created_at', 'updated_at', 'count')
     prepopulated_fields = {'slug': ('en_title',)}
     list_filter = ('status',)
     raw_id_fields = ('comment',)

@@ -24,7 +24,7 @@ class ArchiveArticleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Article
-        fields = ('title', 'slug', 'image', 'article_user', 'status', 'category')
+        fields = ('title', 'slug', 'image', 'article_user', 'status', 'category', 'count')
 
 
 class CreateArticleSerializer(serializers.ModelSerializer):
@@ -34,13 +34,11 @@ class CreateArticleSerializer(serializers.ModelSerializer):
 
 
 class RetrieveArticleSerializer(serializers.ModelSerializer):
-    comment_article = CommentSerializer(source='comment', many=True)
     category = serializers.StringRelatedField(read_only=True)
 
     class Meta:
         model = Article
-        fields = ('author', 'title', 'slug', 'short_description', 'content', 'image', 'category', 'updated_at'
-                  , 'comment_article')
+        fields = ('author', 'title', 'slug', 'short_description', 'content', 'image', 'category', 'updated_at')
 
 
 # CategorySerializer
@@ -53,21 +51,19 @@ class CategorySerializer(serializers.ModelSerializer):
 # PodCastSerializer
 
 class ArchivePodCastSerializer(serializers.ModelSerializer):
-    comment_podcast = CommentSerializer(source='comment', many=True)
 
     class Meta:
         model = Podcast
         fields = ('title', 'slug', 'sound', 'description', 'image', 'speaker', 'data_collector', 'text_editor',
-                  'sound_editor', 'graphic_designer', 'comment_podcast', 'id')
+                  'sound_editor', 'graphic_designer', 'id')
 
 
 class RetrievePodCastSerializer(serializers.ModelSerializer):
-    comment_podcast = CommentSerializer(source='comment', many=True)
 
     class Meta:
         model = Podcast
         fields = ('title', 'slug', 'sound', 'description', 'image', 'speaker', 'data_collector', 'text_editor',
-                  'sound_editor', 'graphic_designer', 'comment_podcast', 'id')
+                  'sound_editor', 'graphic_designer', 'id')
 
 
 # EventSerializer
