@@ -55,7 +55,8 @@ class CategorySerializer(serializers.ModelSerializer):
 class ArchivePodCastSerializer(serializers.ModelSerializer):
     class Meta:
         model = Podcast
-        fields = ('title', 'slug', 'image', 'speaker')
+        fields = ('title', 'slug', 'sound', 'description', 'image', 'speaker', 'data_collector', 'text_editor',
+                  'sound_editor', 'graphic_designer', 'comment_podcast')
 
 
 class RetrievePodCastSerializer(serializers.ModelSerializer):
@@ -64,7 +65,7 @@ class RetrievePodCastSerializer(serializers.ModelSerializer):
     class Meta:
         model = Podcast
         fields = ('title', 'slug', 'sound', 'description', 'image', 'speaker', 'data_collector', 'text_editor',
-                  'sound_editor', 'graphic_designer', 'comment_podcast')
+                  'sound_editor', 'graphic_designer', 'comment_podcast', 'id')
 
 
 # EventSerializer
@@ -72,7 +73,7 @@ class RetrievePodCastSerializer(serializers.ModelSerializer):
 class ListEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ('title', 'slug', 'image', 'is_active')
+        fields = ('title', 'slug', 'image', 'is_active', 'id')
 
 
 class ImageSerializer(serializers.ModelSerializer):
