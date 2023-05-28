@@ -7,6 +7,7 @@ from post.serializer import CommentSerializer
 
 class ListCommentView(APIView):
     authentication_classes = []
+    serializer_class = CommentSerializer
 
     def get(self, request, post_type, post_slug):
         comments = Comment.objects.filter(post_slug=post_slug, post_type=post_type, status__exact='a')

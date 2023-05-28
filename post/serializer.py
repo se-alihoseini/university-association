@@ -7,7 +7,7 @@ from accounts.models import User
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        fields = ('name', 'content', 'created_at')
+        fields = ('name', 'content', 'created_at', 'id')
 
 
 class UserArticleSerializer(serializers.ModelSerializer):

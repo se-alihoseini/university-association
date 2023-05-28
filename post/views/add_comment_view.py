@@ -8,6 +8,7 @@ from post.serializer import CommentSerializer
 
 class AddCommentView(APIView):
     authentication_classes = []
+    serializer_class = CommentSerializer
 
     def post(self, request, post_type, post_slug):
         srz_data = CommentSerializer(data=request.data)
