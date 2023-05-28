@@ -56,7 +56,7 @@ class ArchivePodCastSerializer(serializers.ModelSerializer):
     class Meta:
         model = Podcast
         fields = ('title', 'slug', 'sound', 'description', 'image', 'speaker', 'data_collector', 'text_editor',
-                  'sound_editor', 'graphic_designer', 'comment_podcast')
+                  'sound_editor', 'graphic_designer')
 
 
 class RetrievePodCastSerializer(serializers.ModelSerializer):
