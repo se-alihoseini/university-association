@@ -5,6 +5,8 @@ from accounts.serializer import UserSerializer
 
 
 class UserUpdate(APIView):
+    serializer_class = UserSerializer
+
     def put(self, request):
         user = request.user
         srz_data = UserSerializer(instance=user, data=request.data, partial=True)

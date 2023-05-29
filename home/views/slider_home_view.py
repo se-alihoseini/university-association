@@ -8,6 +8,7 @@ from django.shortcuts import get_object_or_404
 
 class SliderView(APIView):
     authentication_classes = []
+    serializer_class = SerializerSlider
 
     def get(self, request):
         queryset = get_object_or_404(Slider, is_active=True)

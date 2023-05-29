@@ -6,7 +6,6 @@ from post.serializer import ImageSerializer
 
 class UploadImage(APIView):
     serializer_class = ImageSerializer
-    authentication_classes = []
 
     def post(self, request):
         srz_data = ImageSerializer(data=request.data)

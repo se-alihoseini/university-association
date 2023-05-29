@@ -9,6 +9,7 @@ from django.shortcuts import get_object_or_404
 class CourseVideoRetrieveView(APIView):
     authentication_classes = []
     lookup_field = 'slug'
+    serializer_class = CourseVideoSerializer
 
     def get(self, request, course_video_slug):
         video = CourseVideo.objects.get(slug=course_video_slug)

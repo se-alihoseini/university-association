@@ -9,6 +9,7 @@ from django.shortcuts import get_object_or_404
 class TeacherCoursesView(APIView):
     authentication_classes = []
     lookup_field = 'slug'
+    serializer_class = CourseSerializer
 
     def get(self, request, teacher_slug):
         teacher = get_object_or_404(Teacher, slug=teacher_slug)

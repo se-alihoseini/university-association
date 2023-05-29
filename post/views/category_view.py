@@ -7,6 +7,7 @@ from post.serializer import CategorySerializer
 
 class CategoryView(APIView):
     serializer_class = CategorySerializer
+    authentication_classes = []
 
     def get(self, request):
         queryset = Category.objects.filter(in_menu=True)

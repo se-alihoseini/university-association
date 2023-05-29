@@ -9,7 +9,6 @@ from django.conf import settings
 class TokenValidationView(APIView):
 
     def get(self, request):
-        print("ppppppppppppppppppppp")
         try:
             token = request.META.get('HTTP_AUTHORIZATION', '').split(' ')[1]
         except Exception:

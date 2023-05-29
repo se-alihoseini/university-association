@@ -7,6 +7,7 @@ from post.serializer import ArchiveArticleSerializer
 
 class CategoryArticlesView(APIView):
     serializer_class = ArchiveArticleSerializer
+    authentication_classes = []
 
     def get(self, request, category_id):
         category = Category.objects.get(id=category_id)

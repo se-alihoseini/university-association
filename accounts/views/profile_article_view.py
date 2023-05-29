@@ -8,6 +8,7 @@ from post.serializer import ArchiveArticleSerializer
 
 class ArticleProfileView(APIView):
     permission_classes = [IsAuthenticated]
+    serializer_class = ArchiveArticleSerializer
 
     def get(self, request):
         user = request.user.id
