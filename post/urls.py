@@ -15,8 +15,6 @@ urlpatterns = [
     path('categories/', category_view.CategoryView.as_view(), name='category_view'),
     path('<int:category_id>/articles/', category_articles.CategoryArticlesView.as_view(), name='category_articles'),
     path('image/upload/', upload_image.UploadImage.as_view(), name='upload_image'),
-    # path('article/update/', user_update.UserUpdate.as_view(), name='user_update'),
-
 ]
 
 router = routers.SimpleRouter()
