@@ -5,6 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from django.shortcuts import get_object_or_404
 from post.models import Event
+from django.utils import timezone
 
 
 class CancelingEvent(APIView):
@@ -12,7 +13,8 @@ class CancelingEvent(APIView):
 
     def get(self, request, event_id):
         user = request.user
-        event = get_object_or_404(Event, pk=event_id, is_active=True)
+        current_datetime = timezone.now()
+        event = get_object_or_404(Event, pk=event_id, is_active=True, expire_time__gte=current_datetime)
 
         if event.users.filter(id=user.id).exists():
             event.users.remove(user)
