@@ -77,7 +77,7 @@ class ListEventSerializer(serializers.ModelSerializer):
 class RetrieveEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = '__all__'
+        exclude = ('max_user', 'users')
 
 
 class ImageSerializer(serializers.ModelSerializer):
