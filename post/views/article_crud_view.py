@@ -24,8 +24,6 @@ class ArticleViewSet(MultipleFieldLookupMixin, ViewSet):
         srz_data = CreateArticleSerializer(data=request.data)
         if srz_data.is_valid():
             srz_data.validated_data['author'] = user
-            # slug_category = srz_data.validated_data['category']
-            # category = get_object_or_404(Category, slug=slug_category)
             srz_data.create(srz_data.validated_data)
             return Response(srz_data.data, status=status.HTTP_201_CREATED)
         return Response(srz_data.errors, status=status.HTTP_400_BAD_REQUEST)

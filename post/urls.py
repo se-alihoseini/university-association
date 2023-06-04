@@ -15,7 +15,7 @@ urlpatterns = [
     path('comment/send/<str:post_type>/<slug:post_slug>/', add_comment_view.AddCommentView.as_view(), name='add_comment'),
     path('comment/list/<str:post_type>/<slug:post_slug>/', list_comment_view.ListCommentView.as_view(), name='list_comment'),
     path('categories/', category_view.CategoryView.as_view(), name='category_view'),
-    path('<int:category_id>/articles/', category_articles.CategoryArticlesView.as_view(), name='category_articles'),
+    path('<slug:category_slug>/articles/', category_articles.CategoryArticlesView.as_view(), name='category_articles'),
     path('image/upload/', upload_image.UploadImage.as_view(), name='upload_image'),
 ]
 

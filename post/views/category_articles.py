@@ -9,8 +9,8 @@ class CategoryArticlesView(APIView):
     serializer_class = ArchiveArticleSerializer
     authentication_classes = []
 
-    def get(self, request, category_id):
-        category = Category.objects.get(id=category_id)
+    def get(self, request, category_slug):
+        category = Category.objects.get(slug=category_slug)
         queryset = Article.objects.filter(status='p', category=category)
         srz_data = ArchiveArticleSerializer(instance=queryset, many=True)
         return Response(data=srz_data.data, status=status.HTTP_200_OK)
