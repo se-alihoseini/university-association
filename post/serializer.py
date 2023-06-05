@@ -45,13 +45,10 @@ class RetrieveArticleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Article
-        fields = ('author', 'title', 'slug', 'short_description', 'content', 'image', 'category', 'updated_at')
-
-
+        fields = ('author', 'title', 'slug', 'content', 'image', 'category', 'updated_at')
 
 
 # PodCastSerializer
-
 class ArchivePodCastSerializer(serializers.ModelSerializer):
 
     class Meta:
