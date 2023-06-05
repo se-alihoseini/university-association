@@ -17,8 +17,7 @@ class Article(models.Model):
     content = RichTextField()
     image = models.ImageField(blank=True, null=True, upload_to='image/article/%y /%m /%d')
     status = models.CharField(max_length=1, choices=Status_Choice, default='d')
-    category = models.ForeignKey('Category', on_delete=models.CASCADE, related_name='category_article', blank=True,
-                                 null=True)
+    category = models.ForeignKey('Category', on_delete=models.CASCADE, related_name='category_article')
     comment = models.ManyToManyField('Comment', related_name='comment_article', blank=True)
     is_top = models.BooleanField(default=False)
     count = models.IntegerField(default=0)
