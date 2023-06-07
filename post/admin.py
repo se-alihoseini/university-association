@@ -81,5 +81,17 @@ class CommentAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Comment, CommentAdmin)
-admin.site.register(Image)
-admin.site.register(Journal)
+
+
+class ImageAdmin(admin.ModelAdmin):
+    list_display = ('id', 'img_preview',)
+
+
+admin.site.register(Image, ImageAdmin)
+
+
+class JournalAdmin(admin.ModelAdmin):
+    list_display = ('title', 'src')
+
+
+admin.site.register(Journal, JournalAdmin)

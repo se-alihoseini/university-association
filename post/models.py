@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.text import slugify
 from ckeditor.fields import RichTextField
 from accounts.models import User
+from django.utils.html import mark_safe
 
 
 class Article(models.Model):
@@ -139,6 +140,10 @@ class Comment(models.Model):
 
 class Image(models.Model):
     image = models.ImageField(upload_to='image/user_upload/%y /%m /%d')
+
+    def img_preview(self):
+        return mark_safe(f'<img src = "{self.image.url}" width = "80" height="80" style = "border-radius: 8px; '
+                         f'object-fit:cover;" />')
 
 
 class Journal(models.Model):
