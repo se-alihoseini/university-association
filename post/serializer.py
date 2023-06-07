@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Article, Podcast, Event, Comment, Category, Image
+from .models import Article, Podcast, Event, Comment, Category, Image, Journal
 from accounts.models import User
 
 
@@ -83,4 +83,9 @@ class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Image
         fields = ('image',)
-        
+
+
+class JournalSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Journal
+        fields = '__all__'

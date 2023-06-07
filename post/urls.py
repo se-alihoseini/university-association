@@ -2,12 +2,13 @@ from django.urls import path
 from rest_framework import routers
 from .views import article_crud_view, podcast_list_view, podcast_retrieve_view, attend_to_event, event_list_view, \
     canceling_event_view, add_comment_view, list_comment_view, category_view, category_articles, upload_image,\
-    event_retrieve_view
+    event_retrieve_view, journal_list_view
 
 app_name = 'post'
 urlpatterns = [
     path('podcast/archive/', podcast_list_view.PodcastListView.as_view(), name='podcast_archive'),
     path('podcast/<int:id>/<slug:slug>/', podcast_retrieve_view.PodcastRetrieveView.as_view(), name='podcast_retrieve'),
+    path('journal/archive/', journal_list_view.JournalListView.as_view(), name='journal_archive'),
     path('event/archive/', event_list_view.EventListView.as_view(), name='event_archive'),
     path('event/<slug:slug>/', event_retrieve_view.EventRetrieveView.as_view(), name='event_retrieve'),
     path('event/attend/<int:event_id>/', attend_to_event.AttendToEvent.as_view(), name='attend_to_event'),

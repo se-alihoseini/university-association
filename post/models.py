@@ -139,3 +139,12 @@ class Comment(models.Model):
 
 class Image(models.Model):
     image = models.ImageField(upload_to='image/user_upload/%y /%m /%d')
+
+
+class Journal(models.Model):
+    image = models.ImageField(upload_to='image/Journal/%y /%m /%d')
+    title = models.CharField(max_length=30)
+    src = models.FileField(upload_to='file/Journal/%y /%m /%d')
+
+    def __str__(self):
+        return self.title
