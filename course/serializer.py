@@ -42,3 +42,4 @@ class V2CourseCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = CourseCategory
         fields = ('name', 'slug')
+

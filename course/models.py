@@ -24,8 +24,8 @@ class CourseVideo(models.Model):
 
 
 class Course(models.Model):
-    title = models.CharField(max_length=30)
-    en_title = models.CharField(max_length=30, unique=True)
+    title = models.CharField(max_length=40)
+    en_title = models.CharField(max_length=40, unique=True)
     slug = models.CharField(max_length=40)
     description = RichTextField()
     teacher = models.ForeignKey('Teacher', on_delete=models.CASCADE, related_name='teacher_course')
@@ -61,9 +61,9 @@ class Teacher(models.Model):
 
 
 class CourseCategory(models.Model):
-    name = models.CharField(max_length=20, unique=True)
-    en_name = models.CharField(max_length=20, unique=True)
-    slug = models.CharField(max_length=20, blank=True, null=True)
+    name = models.CharField(max_length=30, unique=True)
+    en_name = models.CharField(max_length=30, unique=True)
+    slug = models.CharField(max_length=30, blank=True, null=True)
 
     def __str__(self):
         return self.name

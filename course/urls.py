@@ -1,6 +1,6 @@
 from django.urls import path
 from course.views import teacher_list_view, course_list_view, teacher_courses, course_retrieve_view,\
-    course_video_retrieve_view, v2_course_video_list_view, v2_course_category_view
+    course_video_retrieve_view, v2_course_video_list_view, v2_course_category_view, v2_all_course_video_view
 app_name = 'course'
 urlpatterns = [
     path('teachers/', teacher_list_view.TeacherListView.as_view(), name='list_teachers_view'),
@@ -13,4 +13,6 @@ urlpatterns = [
          name='v2_course_video_list_view'),
     path('v2/courses_category/', v2_course_category_view.CourseCategoryView.as_view(),
          name='v2_course_category_view'),
+    path('v2/all_course_video/', v2_all_course_video_view.AllCourseVideoListView.as_view(),
+         name='v2_all_course_video'),
 ]

@@ -100,9 +100,9 @@ class Event(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=20, unique=True)
-    en_name = models.CharField(max_length=20, unique=True)
-    slug = models.CharField(max_length=20, blank=True, null=True)
+    name = models.CharField(max_length=30, unique=True)
+    en_name = models.CharField(max_length=30, unique=True)
+    slug = models.CharField(max_length=30, blank=True, null=True)
     description = RichTextField(blank=True, null=True)
     # icon = models.ImageField(upload_to='image/category/%y /%m /%d')
     # is_sub = models.BooleanField()
