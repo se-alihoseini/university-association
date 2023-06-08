@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.admin import StackedInline
-from course.models import Course, CourseVideo, Teacher
+from course.models import Course, CourseVideo, Teacher, CourseCategory
 
 
 class CourseVideoAdmin(StackedInline):
@@ -25,3 +25,10 @@ class TeacherAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Teacher, TeacherAdmin)
+
+
+class CourseCategoryAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('en_name',)}
+
+
+admin.site.register(CourseCategory, CourseCategoryAdmin)

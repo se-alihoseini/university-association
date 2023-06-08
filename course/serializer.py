@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from course.models import Course, Teacher, CourseVideo
+from course.models import Course, Teacher, CourseVideo, CourseCategory
 
 
 class TeacherSerializer(serializers.ModelSerializer):
@@ -9,9 +9,11 @@ class TeacherSerializer(serializers.ModelSerializer):
 
 
 class CourseVideoSerializer(serializers.ModelSerializer):
+    category = serializers.StringRelatedField(read_only=True)
+
     class Meta:
         model = CourseVideo
-        exclude = ('en_name', 'slug', 'id')
+        fields = ('name', 'category', 'time', 'video_file')
 
 
 class CourseVideoListSerializer(serializers.ModelSerializer):
@@ -34,3 +36,9 @@ class RetrieveCourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
         fields = ('title', 'slug', 'description', 'date', 'full_time', 'course_video')
+
+
+class V2CourseCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CourseCategory
+        fields = ('name', 'slug')

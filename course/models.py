@@ -12,6 +12,7 @@ class CourseVideo(models.Model):
     course = models.ForeignKey('Course', on_delete=models.CASCADE, related_name='course_video')
     video_file = models.FileField(upload_to='course/video/%y /%m /%d')
     time = models.TimeField()
+    category = models.ForeignKey('CourseCategory', on_delete=models.CASCADE, related_name='course_category')
 
     def __str__(self):
         return self.name
@@ -56,3 +57,16 @@ class Teacher(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.en_name)
         super(Teacher, self).save(*args, **kwargs)
+
+
+class CourseCategory(models.Model):
+    name = models.CharField(max_length=20, unique=True)
+    en_name = models.CharField(max_length=20, unique=True)
+    slug = models.CharField(max_length=20, blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.en_name)
+        super(CourseCategory, self).save(*args, **kwargs)
