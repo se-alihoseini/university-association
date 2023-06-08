@@ -6,11 +6,9 @@ class IsOwnerOrReadOnly(BasePermission):
     message = 'permission denied'
 
     def has_permission(self, request, view):
-        # return request.user.is_authenticated and request.user
-        return True
+        return request.user.is_authenticated and request.user
 
     def has_object_permission(self, request, view, obj):
-        # if request.method in SAFE_METHODS:
-        #     return True
-        # return obj.author == request.user
-        return True
+        if request.method in SAFE_METHODS:
+            return True
+        return obj.author == request.user
