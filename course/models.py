@@ -12,7 +12,8 @@ class CourseVideo(models.Model):
     course = models.ForeignKey('Course', on_delete=models.CASCADE, related_name='course_video')
     video_file = models.FileField(upload_to='course/video/%y /%m /%d')
     time = models.TimeField()
-    category = models.ForeignKey('CourseCategory', on_delete=models.CASCADE, related_name='course_category')
+    category = models.ForeignKey('CourseCategory', on_delete=models.CASCADE, related_name='course_category')  # v2
+    teacher = models.CharField(max_length=40)  # v2
 
     def __str__(self):
         return self.name
