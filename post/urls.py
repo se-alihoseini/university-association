@@ -2,7 +2,7 @@ from django.urls import path
 from rest_framework import routers
 from .views import article_crud_view, podcast_list_view, podcast_retrieve_view, attend_to_event, event_list_view, \
     canceling_event_view, add_comment_view, list_comment_view, category_view, category_articles, upload_image,\
-    event_retrieve_view, journal_list_view
+    event_retrieve_view, journal_list_view, edit_article_content_view
 
 app_name = 'post'
 urlpatterns = [
@@ -18,6 +18,8 @@ urlpatterns = [
     path('categories/', category_view.CategoryView.as_view(), name='category_view'),
     path('<slug:category_slug>/articles/', category_articles.CategoryArticlesView.as_view(), name='category_articles'),
     path('image/upload/', upload_image.UploadImage.as_view(), name='upload_image'),
+    path('article/<slug:slug>/edit/', edit_article_content_view.EditArticleContentView.as_view(), name='edit_article_content_view'),
+
 ]
 
 router = routers.SimpleRouter()
