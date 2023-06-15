@@ -9,6 +9,7 @@ from django.shortcuts import get_object_or_404
 from accounts.serializer import ForgotPasswordSerializer, ChangePasswordSerializer
 from accounts.models import User, OtpCode
 from django.contrib.auth.hashers import make_password
+from django.core.mail import send_mail
 
 
 def get_random_string(length):
@@ -30,6 +31,8 @@ class ForgotPasswordView(APIView):
             email = user.email
             OtpCode.objects.filter(email=email).delete()
             OtpCode.objects.create(email=email, code=random_code, expire_time=expire_time)
+            send_mail('Password Reset', 'Your verification code: %s' % (random_code,), 'csco.tech <support@mail.csco.tech>',
+                      [email], fail_silently=False)
             return Response({"success": "OTP code sent successfully"}, status=status.HTTP_200_OK)
         else:
             srz_email = ForgotPasswordSerializer(data=request.data)
@@ -37,6 +40,8 @@ class ForgotPasswordView(APIView):
                 email = srz_email.validated_data['email']
                 OtpCode.objects.filter(email=email).delete()
                 OtpCode.objects.create(email=email, code=random_code, expire_time=expire_time)
+                send_mail('Password Reset', 'Your verification code: %s' % (random_code,), 'csco.tech <support@mail.csco.tech>',
+                          [email], fail_silently=False)
                 return Response({"success": "OTP code sent successfully"}, status=status.HTTP_200_OK)
             return Response(srz_email.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -68,3 +73,7 @@ class ChangePasswordView(APIView):
             else:
                 return Response(data='code is not correct', status=status.HTTP_400_BAD_REQUEST)
         return Response(data=srz_data.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# pensive_mayer_8ulrkt
+# 6c6d1729-7771-4a0b-97e6-0ee925f3f332
