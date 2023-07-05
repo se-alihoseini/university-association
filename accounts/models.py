@@ -22,7 +22,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return f"{self.full_name} - {self.student_number} - {self.university}"
 
-
     @property
     def is_staff(self):
         return self.is_admin
