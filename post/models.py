@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils.text import slugify
-from ckeditor.fields import RichTextField
 from accounts.models import User
 from django.utils.html import mark_safe
 
@@ -47,7 +46,7 @@ class Podcast(models.Model):
     slug = models.CharField(max_length=50, null=True, blank=True)
     time = models.TimeField()
     sound = models.FileField(upload_to='sound/podcast/%y /%m /%d')
-    description = RichTextField()
+    description = models.TextField()
     image = models.ImageField(upload_to='image/podcast/%y /%m /%d')
     speaker = models.CharField(max_length=30)
     data_collector = models.CharField(max_length=50)
@@ -71,7 +70,7 @@ class Event(models.Model):
     en_title = models.CharField(max_length=50, unique=True)
     slug = models.CharField(max_length=50, blank=True, null=True)
     image = models.ImageField(upload_to='image/event/%y /%m /%d')
-    content = RichTextField()
+    content = models.TextField()
     users = models.ManyToManyField(User, related_name='user_event', blank=True)
     date = models.DateField()
     expire_time = models.DateField()
@@ -103,7 +102,7 @@ class Category(models.Model):
     name = models.CharField(max_length=30, unique=True)
     en_name = models.CharField(max_length=30, unique=True)
     slug = models.CharField(max_length=30, blank=True, null=True)
-    description = RichTextField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
     # icon = models.ImageField(upload_to='image/category/%y /%m /%d')
     # is_sub = models.BooleanField()
     in_menu = models.BooleanField(default=False)

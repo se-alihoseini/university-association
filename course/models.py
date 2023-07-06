@@ -1,5 +1,4 @@
 from django.db import models
-from ckeditor.fields import RichTextField
 from django.utils.text import slugify
 from django.utils.html import mark_safe
 
@@ -8,7 +7,7 @@ class CourseVideo(models.Model):
     name = models.CharField(max_length=30)
     en_name = models.CharField(max_length=30, unique=True)
     slug = models.CharField(max_length=30)
-    description = RichTextField()
+    description = models.TextField()
     course = models.ForeignKey('Course', on_delete=models.CASCADE, related_name='course_video')
     video_file = models.FileField(upload_to='course/video/%y /%m /%d')
     time = models.TimeField()
@@ -27,7 +26,7 @@ class Course(models.Model):
     title = models.CharField(max_length=40)
     en_title = models.CharField(max_length=40, unique=True)
     slug = models.CharField(max_length=40)
-    description = RichTextField()
+    description = models.TextField()
     teacher = models.ForeignKey('Teacher', on_delete=models.CASCADE, related_name='teacher_course')
     date = models.DateField()
     full_time = models.TimeField()

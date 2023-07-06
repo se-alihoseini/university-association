@@ -35,11 +35,11 @@ class ArchiveArticleSerializer(serializers.ModelSerializer):
 
 
 class CreateArticleSerializer(serializers.ModelSerializer):
-    article_category = CategorySerializer(source='category')
+    # article_category = CategorySerializer(source='category')
 
     class Meta:
         model = Article
-        fields = ('title', 'en_title', 'content', 'image', 'article_category')
+        fields = ('title', 'en_title', 'content', 'image', 'category')
 
 
 class RetrieveArticleSerializer(serializers.ModelSerializer):
