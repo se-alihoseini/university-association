@@ -37,8 +37,9 @@ class ArticleViewSet(MultipleFieldLookupMixin, ViewSet):
 
     def partial_update(self, request, slug=None):
         queryset = get_object_or_404(self.queryset, slug=slug)
-        srz_data = ArchiveArticleSerializer(instance=queryset, data=request.data, partial=True)
+        srz_data = CreateArticleSerializer(instance=queryset, data=request.data, partial=True)
         if srz_data.is_valid():
+            srz_data.validated_data['status'] = 'd'
             srz_data.save()
             return Response(srz_data.data, status=status.HTTP_200_OK)
         return Response(srz_data.errors, status=status.HTTP_400_BAD_REQUEST)
