@@ -75,6 +75,12 @@ class ListEventSerializer(serializers.ModelSerializer):
         fields = ('title', 'slug', 'image', 'is_active', 'id')
 
 
+class FirstEventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Event
+        fields = ('title', 'slug')
+
+
 class RetrieveEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
